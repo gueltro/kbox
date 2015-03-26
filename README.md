@@ -1,7 +1,7 @@
 # kbox
 ##### an encrypted file system
 
-For details on the implementation refer to:
+For details on the design refer to:
 [our paper] (http://css.csail.mit.edu/6.858/2014/projects/gueltro-klaverty-npaggi-vrama.pdf)
 
 ## Usage:
