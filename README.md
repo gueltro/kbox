@@ -80,3 +80,4 @@ This user has initialized his or her kbox with the username `user1` and a single
 cat .ssh/id_rsa.pub | ssh <USERNAME@SERVER> 'cat >> .ssh/authorized_keys'
 ```
 For more information or troubleshooting for this process, see [this website] (http://www.linuxproblem.org/art_9.html).
+* The current implementation of `kbox` only works for Linux/UNIX systems.
