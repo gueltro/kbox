@@ -36,6 +36,6 @@ echo 'alias kbox="python <PATH-TO-THE-KBOX-CODE>/commands.py"' >> ~/.bashrc
 * If the account on the server that you are using is password protected, you may quickly grow tired of typing in your password for that account. You can avoid this by adding your ssh keys to the list of authorized keys on the server. You can use the command:
 
   ```bash
-cat .ssh/id_rsa.pub | ssh <username@server> 'cat >> .ssh/authorized_keys'
+cat .ssh/id_rsa.pub | ssh <USERNAME@SERVER> 'cat >> .ssh/authorized_keys'
 ```
 For more information or troubleshooting for this process, see [this website] (http://www.linuxproblem.org/art_9.html).
