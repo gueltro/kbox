@@ -3,12 +3,25 @@ from my_crypto import encrypt, decrypt
 from crypto_sign import key_to_string, string_to_key, sign, verify
 import os
 
-debug = 0
-# set this to hostname of your server
-hostname = 'black@10.0.0.24' #localhost
-# set this to the scp port of your server
-port = '22'#'2222' 
+home_dir = os.environ['HOME']
+
+kbox_path = home_dir + "/kbox/"
+key_path = kbox_path + ".key/"
+host_path = kbox_path + ".host"
+
+
 delete_token = 'I DELETED THIS FILE'
+debug = 0
+
+# set this to hostname of your server
+def read_host_info():
+    if os.path.isfile(host_file):
+        host_file = open(host_path,"r")
+        host_name = host_file.readline()[:-1] 
+        port_number = host_file.readline()[:-1]  
+    else:
+        print "Error: hostname was not configured"
+
 
 ##Get the server's hostname
 def get_hostname():

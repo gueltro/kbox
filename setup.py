@@ -7,6 +7,28 @@ home_dir = os.environ['HOME']
 
 kbox_path = home_dir + "/kbox/"
 key_path = kbox_path + ".key/"
+host_path = kbox_path + ".host"
+
+
+## Interactive setup for the new identity of the user
+def setup_identity():
+        if not os.path.isdir(kbox_path):
+            os.mkdir(kbox_path)
+	if not os.path.isdir(key_path):
+		os.mkdir(key_path)
+	
+        setup_public_key()	
+        setup_host()
+
+def setup_host():
+    if not os.path.isfile(host_path):
+       os.remove(host_path)
+
+    host_file = open(host_path,"w") 
+    host_name = raw_input("Please enter the host name of the ssh server that you want to use for storage: i.e. bob@1.1.2.3") 
+    port_number = raw_intput("Insert the number of the port where ssh is listening: ")
+    host_file.write(host_name + '\n' + port_number)
+    host_file.close()
 
 
 ## Interactive setup for a root directory
