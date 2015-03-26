@@ -17,9 +17,12 @@ def setup_identity():
 	if not os.path.isdir(key_path):
 		os.mkdir(key_path)
 	
-        setup_public_key()	
+        key_name = setup_public_key()	
         setup_host()
-
+	permission = raw_input("Do you want to setup your first root folder with " + key_name + " as your identity? (y/n): ")
+	if permission.lower() == 'y':
+		setup_root(key_name)
+		
 def setup_host():
     if os.path.isfile(host_path):
        os.remove(host_path)
@@ -29,13 +32,15 @@ def setup_host():
     port_number = raw_input("Insert the number of the port where ssh is listening (i.e. 22): ")
     host_file.write(host_name + '\n' + port_number)
     host_file.close()
-
+    """
     permission = raw_input("Would you like to add your ssh key to the server's list of authorized keys? Doing so will enable you to push and pull files using the kbox system without typing the password to your account on the server each time. [See the readme for more info] (y/n) ")
 
     if permission.lower() == 'y':
+	    os.system('ssh -p ' + port_number + " " + host_name +" ' mkdir -p .ssh'")
 	    os.system("cat ~/.ssh/id_rsa.pub | ssh -p " + port_number + " " + host_name + " 'cat >> .ssh/authorized_keys'")
-    
+    """    
     print "Creating kbox directory on the server..."
+
     os.system("ssh -p " + port_number + " " + host_name + " 'mkdir $HOME/kbox'")
 
 

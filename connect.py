@@ -9,22 +9,30 @@ kbox_path = home_dir + "/kbox/"
 key_path = kbox_path + ".key/"
 host_path = kbox_path + ".host"
 
+hostname = None
+port = None
 
 delete_token = 'I DELETED THIS FILE'
 debug = 0
 
 # set this to hostname of your server
 def read_host_info():
-    if os.path.isfile(host_file):
+    if os.path.isfile(host_path):
         host_file = open(host_path,"r")
-        host_name = host_file.readline()[:-1] 
-        port_number = host_file.readline()[:-1]  
+        host_name = host_file.readline()[:-1]
+	print "Setting hostname to: " + host_name
+	set_hostname(host_name)
+        port_number = host_file.readline()
+	print "Setting port to: " + port_number
+	set_port(port_number)
     else:
         print "Error: hostname was not configured"
 
 
 ##Get the server's hostname
 def get_hostname():
+    if hostname == None:
+	read_host_info()
     return hostname
 
 ##Set the server's hostname
@@ -34,6 +42,8 @@ def set_hostname(host):
 
 ##Get the port through which we are communicating with the server
 def get_port():
+    if port == None:
+	read_host_info()
     return port
 
 ##Set the port through which we are communicating with the server
@@ -53,8 +63,8 @@ def pull(cipher, key, public_keys):
         print "With key: " + key
 
     ##Pull the file requested and corredponding signature from the server 
-    os.system("scp  -q -P " + port + " " + hostname + ":~/kbox/"+cipher + ".enc  /tmp/ ")
-    os.system("scp  -q -P " + port + " " + hostname + ":~/kbox/"+cipher + ".sig  /tmp/ ")
+    os.system("scp  -q -P " + get_port() + " " + get_hostname() + ":~/kbox/"+cipher + ".enc  /tmp/ ")
+    os.system("scp  -q -P " + get_port() + " " + get_hostname() + ":~/kbox/"+cipher + ".sig  /tmp/ ")
 
     ##Read the signature from its file
     signature_file_name = "/tmp/"+cipher+".sig"
@@ -169,8 +179,8 @@ def push(cipher, content, key, challenge, private_key_string):
     temp_sig_file.close()
 
     ##Send to server
-    os.system("scp -q  -P " + port + " " + temp_file_name + ".enc " + hostname + ":~/kbox/ " )
-    os.system("scp  -q -P " + port + " " + temp_sig_file_name + " " + hostname + ":~/kbox/ " )
+    os.system("scp -q  -P " + get_port() + " " + temp_file_name + ".enc " + get_hostname() + ":~/kbox/ " )
+    os.system("scp  -q -P " + get_port() + " " + temp_sig_file_name + " " + get_hostname() + ":~/kbox/ " )
 
     ## Delete temp files   
     os.remove(temp_file_name)
@@ -196,11 +206,11 @@ def remove(cipher, priv_key_string):
     temp_sig_file.close()
 
     ##Send the new signature to the server
-    os.system("scp -q -P " + port + " " + temp_sig_file_name + " " + hostname + ":~/kbox/ ")
+    os.system("scp -q -P " + get_port() + " " + temp_sig_file_name + " " + get_hostname() + ":~/kbox/ ")
 
     ##Delete the temp signature file
     os.remove(temp_sig_file_name)
 
     ##Remove the file from the server
-    os.system("ssh -p " + port + " " + hostname + " 'rm ~/kbox/" + cipher + ".enc'")    
+    os.system("ssh -p " + get_port() + " " + get_hostname() + " 'rm ~/kbox/" + cipher + ".enc'")    
     
