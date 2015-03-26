@@ -11,7 +11,9 @@ key_path = kbox_path + ".key/"
 
 ## Interactive setup for a root directory
 def setup_root(key_name=None):
-	
+
+        if not os.path.isdir(kbox_path):
+            os.mkdir(kbox_path)
 	if not os.path.isdir(key_path):
 		os.mkdir(key_path)
 	if key_name == None:	
