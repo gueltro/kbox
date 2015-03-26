@@ -1,6 +1,7 @@
 import os
 
-while 1:
+def spawn_kshell():
+    while 1:
 	
 	command = raw_input("<<k>>: ")
 

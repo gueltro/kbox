@@ -4,6 +4,7 @@ from inflate import inflate
 from setup import *
 from  connect import *
 from delocate import *
+from kshell import *
 import sys
 import os
 
@@ -126,6 +127,9 @@ if order == 'mkroot':
     except:
         arg = ""
     setup_root(arg)
+
+if order == 'interactive':
+    spawn_kshell()
 
 if order == 'help':
     print help_message
