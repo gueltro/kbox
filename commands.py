@@ -7,9 +7,11 @@ from delocate import *
 import sys
 import os
 
-kbox_path = '/home/gueltro/kbox'
+home_dir = os.environ['HOME']
 
-(pub_key,priv_key) =  import_key("/home/gueltro/kbox/.key/giulio") 
+kbox_path = home_dir + '/kbox'
+
+#(pub_key,priv_key) =  import_key(home_dir + "/kbox/.key/") 
 
 
 order = sys.argv[1]

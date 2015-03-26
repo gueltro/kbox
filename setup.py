@@ -3,7 +3,9 @@ from crypto_sign import *
 from Crypto.Cipher import PKCS1_v1_5
 import os
 
-kbox_path = "/home/gueltro/kbox/"
+home_dir = os.environ['HOME']
+
+kbox_path = home_dir + "/kbox/"
 key_path = kbox_path + ".key/"
 
 
