@@ -16,4 +16,6 @@ For details on the implementation refer to:
 
 ## Inital Setup:
 1. Download/clone the kbox source.
-2. Set an alias for the string 'kbox' to the command that runs the commands.py file. You can use: `echo 'alias kbox="python <PATH-TO-THE-KBOX-CODE>/commands.py"' >> ~/.bashrc`
+2. Set an alias for the string 'kbox' to the command that runs the commands.py file. You can use a command such as: `echo 'alias kbox="python <PATH-TO-THE-KBOX-CODE>/commands.py"' >> ~/.bashrc`
+`source ~/.bashrc` (or restart your shell)
+3. Run `kbox setup`

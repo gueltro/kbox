@@ -1,7 +1,7 @@
 from  KNode import *
 from crypto_sign import *
 from inflate import inflate
-from setup import setup_root
+from setup import *
 from  connect import *
 from delocate import *
 import sys
