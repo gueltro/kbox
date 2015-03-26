@@ -1,6 +1,7 @@
 from  KNode import *
 from crypto_sign import *
 from Crypto.Cipher import PKCS1_v1_5
+import os
 
 kbox_path = "/home/gueltro/kbox/"
 key_path = kbox_path + ".key/"
@@ -9,6 +10,8 @@ key_path = kbox_path + ".key/"
 ## Interactive setup for a root directory
 def setup_root(key_name=None):
 	
+	if not os.path.isdir(key_path):
+		os.mkdir(key_path)
 	if key_name == None:	
 		key_name = setup_public_key()	
 	if key_name == None:

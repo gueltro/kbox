@@ -5,7 +5,7 @@ import os
 
 debug = 0
 # set this to hostname of your server
-hostname = 'gueltro@192.168.108.128' #localhost
+hostname = 'black@10.0.0.24' #localhost
 # set this to the scp port of your server
 port = '22'#'2222' 
 delete_token = 'I DELETED THIS FILE'
@@ -40,8 +40,8 @@ def pull(cipher, key, public_keys):
         print "With key: " + key
 
     ##Pull the file requested and corredponding signature from the server 
-    os.system("scp  -P " + port + " " + hostname + ":~/kbox/"+cipher + ".enc  /tmp/ ")
-    os.system("scp  -P " + port + " " + hostname + ":~/kbox/"+cipher + ".sig  /tmp/ ")
+    os.system("scp  -q -P " + port + " " + hostname + ":~/kbox/"+cipher + ".enc  /tmp/ ")
+    os.system("scp  -q -P " + port + " " + hostname + ":~/kbox/"+cipher + ".sig  /tmp/ ")
 
     ##Read the signature from its file
     signature_file_name = "/tmp/"+cipher+".sig"
@@ -156,8 +156,8 @@ def push(cipher, content, key, challenge, private_key_string):
     temp_sig_file.close()
 
     ##Send to server
-    os.system("scp  -P " + port + " " + temp_file_name + ".enc " + hostname + ":~/kbox/ " )
-    os.system("scp  -P " + port + " " + temp_sig_file_name + " " + hostname + ":~/kbox/ " )
+    os.system("scp -q  -P " + port + " " + temp_file_name + ".enc " + hostname + ":~/kbox/ " )
+    os.system("scp  -q -P " + port + " " + temp_sig_file_name + " " + hostname + ":~/kbox/ " )
 
     ## Delete temp files   
     os.remove(temp_file_name)
@@ -183,7 +183,7 @@ def remove(cipher, priv_key_string):
     temp_sig_file.close()
 
     ##Send the new signature to the server
-    os.system("scp  -P " + port + " " + temp_sig_file_name + " " + hostname + ":~/kbox/ ")
+    os.system("scp -q -P " + port + " " + temp_sig_file_name + " " + hostname + ":~/kbox/ ")
 
     ##Delete the temp signature file
     os.remove(temp_sig_file_name)

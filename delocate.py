@@ -23,6 +23,8 @@ def push_all(root_name,priv_key):
 
 	
 def push_dir(path,parent_knode,priv_key):
+	if '.kbox' in path:
+		return
 	
 	path  = os.path.realpath(path)
 	name = path.split('/')[-1]
@@ -73,6 +75,8 @@ def push_dir(path,parent_knode,priv_key):
 
 	
 def push_file(path,parent_knode,priv_key):
+	if '.rem' in path:
+		return
 	path  = os.path.realpath(path)
 	name = path.split('/')[-1]
 	path_to_parent = '/'.join(path.split('/')[:-1])

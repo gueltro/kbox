@@ -24,7 +24,7 @@ except:
 def pull_file(argument):
 		argument = os.path.realpath(argument)
 		path = '/'.join(argument.split('/')[:-1])+'/.kbox/.'+argument.split('/')[-1][:-4]+'.kn'
-		print "Pulling "+ path+'...'
+		#print "Pulling "+ path+'...'
 		strings = [line for line in open(path,'r')]
 		k = KNode(strings)
 		k.gen_key(priv_key)
@@ -62,7 +62,7 @@ if order == 'pull':
 
 
 
-if order == 'push' and os.path.isfile(argument) or os.path.isdir(argument) and '.kbox' not in argument:
+if order == 'push' or order =='free' and os.path.isfile(argument) or os.path.isdir(argument) and '.kbox' not in argument:
 	argument = os.path.realpath(argument)
 	parent_path = path = '/'.join(argument.split('/')[:-2])+'/.kbox/.'+argument.split('/')[-2]+'.kn'
 	k = KNode([line for line in open(parent_path,'r')])
@@ -73,10 +73,14 @@ if order == 'push' and os.path.isfile(argument) or os.path.isdir(argument) and '
 	if os.path.isdir(argument) and '.kbox' not in argument:
 		push_dir(argument,k,priv_key)
 	push(k.to_cipher(),k.to_text(),k.getKey(),"dfsd",priv_key)
+	if order =='free':
+		os.remove(argument)
+		open(argument+'.rem', 'a').close()
 
 
 if order == 'setup':
-	setup_root("/home/gueltro/kbox/.key/giulio")
+	setup_root("giulio")
 
 if order == 'help':
 	os.system('cat ~/kbox/fresh/README')
+
