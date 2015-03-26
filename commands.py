@@ -11,7 +11,10 @@ home_dir = os.environ['HOME']
 
 kbox_path = home_dir + '/kbox'
 
-#(pub_key,priv_key) =  import_key(home_dir + "/kbox/.key/") 
+try:
+	(pub_key,priv_key) = import_key(home_dir + "/kbox/.key/")
+except:
+	(pub_key,priv_key) = (None, None)
 
 
 order = sys.argv[1]
@@ -29,6 +32,9 @@ def pull_file(argument):
 		#print "Pulling "+ path+'...'
 		strings = [line for line in open(path,'r')]
 		k = KNode(strings)
+		if priv_key == None:
+			global pub_key, priv_key
+			(pub_key,priv_key) = import_key(home_dir + "/kbox/.key/")
 		k.gen_key(priv_key)
 		k.fillup()
 		os.remove(argument)
@@ -53,6 +59,9 @@ if order == 'show-roots':
 		
 		
 if order == 'show' and '.'+argument+'.kn' in os.listdir(kbox_path+'/.kbox'):
+	if priv_key == None:
+		global pub_key, priv_key
+		(pub_key,priv_key) = import_key(home_dir + "/kbox/.key/")
 	inflate(argument,priv_key)
 	
 if order == 'pull':
@@ -68,6 +77,9 @@ if order == 'push' or order =='free' and os.path.isfile(argument) or os.path.isd
 	argument = os.path.realpath(argument)
 	parent_path = path = '/'.join(argument.split('/')[:-2])+'/.kbox/.'+argument.split('/')[-2]+'.kn'
 	k = KNode([line for line in open(parent_path,'r')])
+	if priv_key == None:
+		global pub_key, priv_key
+		(pub_key,priv_key) = import_key(home_dir + "/kbox/.key/")
 	k.gen_key(priv_key)
 	k.get_children()	
 	if os.path.isfile(argument) and '.rem' not in argument:

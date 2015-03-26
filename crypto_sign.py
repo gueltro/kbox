@@ -19,16 +19,16 @@ def string_to_key(key_string):
     return RSA.importKey(key_string)
 
 def store_key(public_key,private_key,path):
-	f = open(path,'w')
-	f.write(key_to_string(public_key).encode("hex")+"\n")
-	f.write(key_to_string(private_key).encode("hex")+"\n")
-	f.close()
+    f = open(path,'w')
+    f.write(key_to_string(public_key).encode("hex")+"\n")
+    f.write(key_to_string(private_key).encode("hex")+"\n")
+    f.close()
 
 def import_key(path):
-	f = open(path,'r')
-	public_key = f.readline()[:-1].decode("hex")
-	private_key =f.readline()[:-1].decode("hex")
-	return (public_key,private_key)
+    f = open(path,'r')
+    public_key = f.readline()[:-1].decode("hex")
+    private_key =f.readline()[:-1].decode("hex")
+    return (public_key,private_key)
 
 def sign(message, private_key):
     h = SHA.new()
