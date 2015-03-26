@@ -12,7 +12,7 @@ def spawn_kshell():
 			
 		if  words[i][-4:] == '.rem':
 			check=1
-			os.system('python ~/kbox/code/commands.py pull '+words[i])
+			os.system('kbox pull '+words[i])
 			words[i] = words[i][:-4]
 	
 	newcommand = ' '.join(words)
@@ -23,6 +23,6 @@ def spawn_kshell():
 	else:
 		os.system(newcommand)
 		if check ==1:
-			os.system('python ~/kbox/code/commands.py free '+words[i])
+			os.system('kbox free '+words[i])
 			
 
