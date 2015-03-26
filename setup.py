@@ -33,10 +33,10 @@ def setup_host():
     permission = raw_input("Would you like to add your ssh key to the server's list of authorized keys? Doing so will enable you to push and pull files using the kbox system without typing the password to your account on the server each time. [See the readme for more info] (y/n) ")
 
     if permission.lower() == 'y':
-	    os.system("cat .ssh/id_rsa.pub | ssh -p " + port_number + " " + host_name + " 'cat >> .ssh/authorized_keys'")
+	    os.system("cat ~/.ssh/id_rsa.pub | ssh -p " + port_number + " " + host_name + " 'cat >> .ssh/authorized_keys'")
     
     print "Creating kbox directory on the server..."
-    os.system("ssh -p " + port_number + " " + host_name + " 'mkdir $HOME/kbox'"
+    os.system("ssh -p " + port_number + " " + host_name + " 'mkdir $HOME/kbox'")
 
 
 ## Interactive setup for a root directory
