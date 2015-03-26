@@ -103,20 +103,20 @@ if (order == 'push' or order =='free') \
 		and '.kbox' not in argument:
     (pub_key, priv_key) = read_keys()
     argument = os.path.realpath(argument)
-    parent_path = path = '/'.join(argument.split('/')[:-2]) +\
+    if argument.split('/')[-2] != 'kbox':
+        parent_path = path = '/'.join(argument.split('/')[:-2]) +\
 		    '/.kbox/.' + argument.split('/')[-2] + '.kn'
-    print parent_path
-    k = KNode([line for line in open(parent_path,'r')])
-    k.gen_key(priv_key)
-    k.get_children()	
-    if os.path.isfile(argument) and '.rem' not in argument:
-	push_file(argument,k,priv_key)
-    if os.path.isdir(argument) and '.kbox' not in argument:
-	push_dir(argument,k,priv_key)
-    push(k.to_cipher(),k.to_text(),k.getKey(),"dfsd",priv_key)
-    if order =='free':
-	os.remove(argument)
-	open(argument+'.rem', 'a').close()
+        k = KNode([line for line in open(parent_path,'r')])
+        k.gen_key(priv_key)
+        k.get_children()	
+        if os.path.isfile(argument) and '.rem' not in argument:
+	    push_file(argument,k,priv_key)
+        if os.path.isdir(argument) and '.kbox' not in argument:
+	    push_dir(argument,k,priv_key)
+        push(k.to_cipher(),k.to_text(),k.getKey(),"dfsd",priv_key)
+        if order =='free':
+	    os.remove(argument)
+	    open(argument+'.rem', 'a').close()
 
 if order == 'setup':
     setup_identity() 

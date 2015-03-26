@@ -13,7 +13,7 @@ hostname = None
 port = None
 
 delete_token = 'I DELETED THIS FILE'
-debug = 1
+debug = 0
 
 # set this to hostname of your server
 def read_host_info():
