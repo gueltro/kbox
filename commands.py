@@ -81,7 +81,7 @@ if order == 'push' or order =='free' and os.path.isfile(argument) or os.path.isd
 
 
 if order == 'setup':
-	setup_root("giulio")
+	setup_root()
 
 if order == 'help':
 	os.system('cat ~/kbox/fresh/README')
