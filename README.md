@@ -9,7 +9,7 @@ For details on the design refer to:
 
 ## Commands:
 - `setup`: setup a username, generate a key, enter the information for the server, and create a root directory
-- `show-roots`: Show the list of currents knodes
+- `show-roots`: Show the list of current root knodes
 - `show <knode_name>`: Visualize remote folder rooted at knode with name <knode_name>
 - `push <local_file_name>`: Upload a local file located in a kbox directory in the remote directory (recursively if file is a folder)
 - `pull <remote_file_name>`: Download a remote file in your local kbox folder
@@ -53,6 +53,8 @@ This user has initialized his or her kbox with the username `user1` and a single
     $ kbox push mytestfile
     $ cd ..
     $ rm -r myroot
+    $ kbox show-roots
+    myroot
     $ ls
     $ kbox show myroot
     $ ls
