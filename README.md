@@ -1,7 +1,9 @@
-# kbox
+# `kbox`
 ##### an encrypted file system
 
-For details on the design refer to:
+## What is `kbox`?
+`kbox` is a system that allows you to securely store your files on an untrusted server. Users can remain confident that anyone with access the server cannot decrypt any of your files, including both the filenames and content, without access to your cryptographically secure private key which is stored on your local computer. Additionally, files are stored securely along with a signature of their content so `kbox` users will always know if someone has tampered with their encrypted files.
+For more details on the design, please refer to:
 [this paper] (http://css.csail.mit.edu/6.858/2014/projects/gueltro-klaverty-npaggi-vrama.pdf)
 
 ## Usage:
