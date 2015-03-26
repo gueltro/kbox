@@ -7,24 +7,24 @@ home_dir = os.environ['HOME']
 
 kbox_path = home_dir + "/kbox/"
 key_path = kbox_path + ".key/"
-host_path = kbox_path + ".host"
+config_path = kbox_path + ".config"
 
 hostname = None
 port = None
 
 delete_token = 'I DELETED THIS FILE'
-debug = 0
+debug = 1
 
 # set this to hostname of your server
 def read_host_info():
-    if os.path.isfile(host_path):
-        host_file = open(host_path,"r")
-        host_name = host_file.readline()[:-1]
-	print "Setting hostname to: " + host_name
+    if os.path.isfile(config_path):
+        config_file = open(config_path,"r")
+	username = config_file.readline()[:-1]
+	host_name = config_file.readline()[:-1]
 	set_hostname(host_name)
-        port_number = host_file.readline()
-	print "Setting port to: " + port_number
+        port_number = config_file.readline()
 	set_port(port_number)
+	config_file.close()
     else:
         print "Error: hostname was not configured"
 

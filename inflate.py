@@ -1,5 +1,8 @@
 from KNode import *
-kbox_path = "/home/gueltro/kbox"
+
+home_dir = os.environ['HOME']
+
+kbox_path = home_dir + '/kbox'
 
 def inflate(kn_name,priv_key):
 	root  = KNode([line for line in open(kbox_path+"/.kbox/."+kn_name+'.kn','r')])
