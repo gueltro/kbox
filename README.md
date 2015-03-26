@@ -1,7 +1,15 @@
-remote file system with local encryption implemented on python by: Giulio Gueltrini, Kathleen Laverty, Nicholas Paggi and Varun Ramaswany.
+# kBox
+##### an encrypted file system
+
 For details on the implementation refer to:
-http://css.csail.mit.edu/6.858/2014/projects/gueltro-klaverty-npaggi-vrama.pdf
+[our paper] (http://css.csail.mit.edu/6.858/2014/projects/gueltro-klaverty-npaggi-vrama.pdf)
 
-HOW TO USE:
-work in progress
+## Usage:
+`kbox <command> [<argument>]`
 
+## Commands:
+- `setup`: setup 
+- `show-roots`: Show the list of currents knodes
+- `show <knode_name>`: Visualize remote folder rooted at knode with name <knode_name>
+- `push <local_file_name>`: Upload a local file located in a kbox directory in the remote directory (recursively if file is a folder)
+- `pull <remote_file_name>`: Download a remote file in your local kbox folder
